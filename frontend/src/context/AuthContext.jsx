@@ -1,14 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 
 const AuthContext = createContext(null);
 
-const api = axios.create({ baseURL: '/api' });
-api.interceptors.request.use(cfg => {
-  const token = localStorage.getItem('xenova_token');
-  if (token) cfg.headers.Authorization = `Bearer ${token}`;
-  return cfg;
-});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser]       = useState(null);

@@ -9,6 +9,13 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    email: {
+      type: String,
+      required: [true, "Email is required"],
+      unique: true,
+      trim: true,
+      lowercase: true,
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -16,9 +23,18 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["admin"],
-      default: "admin",
+      enum: ["visitor", "admin"],
+      default: "visitor",
     },
+    quizScores: [
+      {
+        score: { type: Number, required: true },
+        total: { type: Number, required: true },
+        percentage: { type: Number, required: true },
+        rank: { type: String },
+        takenAt: { type: Date, default: Date.now },
+      },
+    ],
   },
   { timestamps: true },
 );

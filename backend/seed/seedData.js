@@ -1,6 +1,5 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 const connectDB = require("../config/db");
 
 const User = require("../models/User");
@@ -277,6 +276,7 @@ const seedDatabase = async () => {
     await User.create({
       username: "xenova_admin",
       password: "admin123",
+      email: "admin@xenova.com",
       role: "admin",
     });
     console.log(

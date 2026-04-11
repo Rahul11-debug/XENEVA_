@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  body {
+    @apply bg-xenova-darker text-white font-exo;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #010a14; }
+  ::-webkit-scrollbar-thumb {
+    background: #00f3ff44;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #00f3ff88; }
+}
+
+@layer components {
+  /* Glass card */
+  .glass-card {
+    @apply bg-xenova-card backdrop-blur-md border border-xenova-blue/20 rounded-xl;
+  }
+
+  /* Neon text */
+  .neon-text {
+    color: #00f3ff;
+    text-shadow: 0 0 10px #00f3ff88, 0 0 20px #00f3ff44;
+  }
+
+  /* Neon border */
+  .neon-border {
+    @apply border border-xenova-blue/40;
+    box-shadow: 0 0 12px rgba(0,243,255,0.15), inset 0 0 12px rgba(0,243,255,0.05);
+  }
+
+  /* Neon button */
+  .btn-neon {
+    @apply px-6 py-2.5 font-orbitron text-sm font-medium tracking-wider
+           border border-xenova-blue/60 text-xenova-blue
+           hover:bg-xenova-blue/10 hover:border-xenova-blue
+           transition-all duration-300 rounded;
+    box-shadow: 0 0 10px rgba(0,243,255,0.2);
+  }
+  .btn-neon:hover {
+    box-shadow: 0 0 20px rgba(0,243,255,0.4);
+  }
+
+  /* Purple neon button */
+  .btn-purple {
+    @apply px-6 py-2.5 font-orbitron text-sm font-medium tracking-wider
+           bg-xenova-purple/20 border border-xenova-purple/60 text-purple-300
+           hover:bg-xenova-purple/30 hover:border-purple-400
+           transition-all duration-300 rounded;
+    box-shadow: 0 0 10px rgba(124,58,237,0.3);
+  }
+
+  /* Section header */
+  .section-title {
+    @apply font-orbitron text-3xl md:text-4xl font-bold tracking-wider;
+    background: linear-gradient(135deg, #00f3ff 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Star field background */
+  .star-bg {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0,243,255,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(124,58,237,0.04) 0%, transparent 50%),
+      #000508;
+  }
+
+  /* Grid lines overlay */
+  .grid-overlay {
+    background-image:
+      linear-gradient(rgba(0,243,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,243,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Scanning line effect */
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00f3ff44, transparent);
+    animation: scan 3s linear infinite;
+  }
+
+  /* Category badge */
+  .category-badge {
+    @apply text-xs font-orbitron tracking-wider px-2 py-0.5 rounded-sm;
+  }
+}
+
+@layer utilities {
+  .text-glow { text-shadow: 0 0 10px currentColor; }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(#010a14, #010a14) padding-box,
+                linear-gradient(135deg, #00f3ff, #7c3aed) border-box;
+    border: 1px solid transparent;
+  }
+}
+
+/* Star particles */
+.stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration) ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%,100% { opacity: 0; transform: scale(0.5); }
+  50%      { opacity: var(--opacity); transform: scale(1); }
+}

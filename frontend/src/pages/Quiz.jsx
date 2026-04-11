@@ -3,11 +3,6 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import  api from "../services/api";
 
-api.interceptors.request.use((cfg) => {
-  const t = localStorage.getItem("xenova_token");
-  if (t) cfg.headers.Authorization = `Bearer ${t}`;
-  return cfg;
-});
 
 const getRank = (pct) =>
   pct >= 90
